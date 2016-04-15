@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace productlist
@@ -9,11 +10,20 @@ namespace productlist
 		public int version;
 		public string description;
 
+		public static List<Product> allProducts = new List<Product>();
+
 		public Product(string name, int version, string description) {
 			this.name = name;
 			this.version = version;
 			this.description = description;
+
+			allProducts.Add (this);
 		}
+
+		~Product() {
+			allProducts.Remove (this);
+		}
+
 		public static Product fromPrompt() {
 			string pName = UI.getAnswer ("Product Name", UI.validateString);
 			int pVersion = Int32.Parse(UI.getAnswer ("Version", UI.validateInt));

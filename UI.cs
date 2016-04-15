@@ -4,7 +4,7 @@ namespace productlist
 {
 	public static class UI
 	{
-		private enum inputType {
+		public enum inputType {
 			create,
 			delete,
 			list,
@@ -49,27 +49,10 @@ namespace productlist
 			return input;
 		}
 
-		public static void promptForCommand() {
-			while (true) {
-				Console.Write ("Enter command: ");
-				string command = Console.ReadLine ();
-				inputType type = decodeInputType (command);
-				switch (type) {
-				case inputType.create:
-					Product p = Product.fromPrompt ();
-					Storage.Add (p);
-					break;
-				case inputType.list:
-					Storage.List ();
-					break;
-				case inputType.dump:
-					Storage.dump ();
-					break;
-				case inputType.load:
-					Storage.load ();
-					break;
-				}
-			}
+		public static inputType promptForCommand() {
+			Console.Write ("Enter command: ");
+			string command = Console.ReadLine ();
+			return decodeInputType (command);
 		}
 	}
 }

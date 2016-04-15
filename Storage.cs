@@ -6,19 +6,14 @@ namespace productlist
 {
 	public static class Storage
 	{
-		private static List<Product> productStorageList = new List<Product>();
 		private static readonly string filePath = @"data.json";
 
-		public static void Add(Product p) {
-			productStorageList.Add (p);
-		}
-
 		public static void dump() {
-			if (productStorageList.Count < 1) {
+			if (Product.allProducts.Count < 1) {
 				Console.WriteLine ("Nothing to dump");
 				return;
 			}
-			string json = JsonConvert.SerializeObject (productStorageList);
+			string json = JsonConvert.SerializeObject (Product.allProducts);
 			System.IO.File.WriteAllText (filePath, json);
 
 		}
@@ -29,15 +24,15 @@ namespace productlist
 				return;
 			}
 			string text = System.IO.File.ReadAllText (filePath);
-			productStorageList = JsonConvert.DeserializeObject<List<Product>> (text);
+			Product.allProducts = JsonConvert.DeserializeObject<List<Product>> (text);
 		}
 
 		private static void listProducts() {
-			if (productStorageList.Count < 1) {
+			if (Product.allProducts.Count < 1) {
 				Console.WriteLine ("No Products found!");
 				return;
 			}
-			foreach (Product p in productStorageList) {
+			foreach (Product p in Product.allProducts) {
 				p.display ();
 			}
 		}
