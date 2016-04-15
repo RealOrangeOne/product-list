@@ -1,0 +1,12 @@
+[Bb]in/
+[Oo]bj/
+[pP]ackages
+*.suo
+*.user
+*.userprefs
+*.ReSharper.user
+*.resharper.user
+*.lock.json
+*.nuget.props
+*.nuget.targets
+*.orig
