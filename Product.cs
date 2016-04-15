@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Newtonsoft.Json;
 
 namespace productlist
 {
@@ -25,6 +25,14 @@ namespace productlist
 
 		public override string ToString() {
 			return String.Format ("Product {0}", this.name);
+		}
+
+		public string serialize() {
+			return JsonConvert.SerializeObject (this);
+		}
+
+		public static Product fromJSON(string json) {
+			return JsonConvert.DeserializeObject<Product> (json);
 		}
 
 		public void display() {

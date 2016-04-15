@@ -8,7 +8,9 @@ namespace productlist
 			create,
 			delete,
 			list,
-			help
+			help,
+			dump,
+			load
 		}
 		private static inputType decodeInputType(string input) {
 			string command = input.Split (null, 1)[0];
@@ -22,6 +24,10 @@ namespace productlist
 			default:
 			case "help":
 				return inputType.help;
+			case "dump":
+				return inputType.dump;
+			case "load":
+				return inputType.load;
 			}
 		}
 
@@ -55,6 +61,12 @@ namespace productlist
 					break;
 				case inputType.list:
 					Storage.List ();
+					break;
+				case inputType.dump:
+					Storage.dump ();
+					break;
+				case inputType.load:
+					Storage.load ();
 					break;
 				}
 			}
