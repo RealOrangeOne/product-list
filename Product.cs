@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace productlist
 {
-	public class Product
+	public class Product : Base
 	{
 		public string name;
 		public int version;
@@ -34,7 +34,8 @@ namespace productlist
 		}
 
 		public override string ToString() {
-			return String.Format ("Product {0}", this.name);
+      string className = this.getName();
+			return String.Format ("{0} {1}", className, this.name);
 		}
 
 		public string serialize() {
